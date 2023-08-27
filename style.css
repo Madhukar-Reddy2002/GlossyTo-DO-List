@@ -1,0 +1,104 @@
+body {
+    background: linear-gradient(to right bottom, #74ebd5, #3b82f6);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  body.dark-mode {
+    background: linear-gradient(to right bottom, #222, #444);
+    color: white;
+  }
+
+  /* Light mode */
+  body.light-mode {
+    background: linear-gradient(to right bottom, #74ebd5, #3b82f6);
+    color: black;
+  }
+
+  .todo-item .task {
+    white-space: normal;
+    flex-grow: 1;
+  }
+
+  .container {
+    background:url(./gradient\ generator.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    position: relative;
+  }
+  .todo-item {
+    overflow: auto;
+    border-radius: 10px;
+    margin-top: 5px;
+    background: rgba(30, 14, 3, 0.344);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(8,10,9,0.25);
+    animation: fadeInDown 0.5s ease;
+  }
+
+  .completed {
+    animation: fadeOut 0.5s ease;
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+  }
+
+  .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 3px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .completed {
+    text-decoration: line-through;
+  }
+  .theme-switch {
+    /* Update styles for theme toggle */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-switch label {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .theme-switch input[type="checkbox"] {
+    display: none;
+  }

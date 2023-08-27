@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism Todo List</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+  <h2>Todo List</h2>
+  <div class="add-task">
+    <input type="text" id="newTask" placeholder="Enter a new task">
+    <button id="addButton">Add</button>
+  </div>
+  <div class="todo-list"></div>
+  <div class="theme-switch">
+    <label for="themeToggle"> <img src="./MSLogo.jpg" alt="THEME" height="30px" width="30px"></label>
+    <input type="checkbox" id="themeToggle">
+    <div class="slider"></div>
+  </div>
+</div>
+<script>
+  const addButton = document.getElementById('addButton');
+  const newTaskInput = document.getElementById('newTask');
+  const todoList = document.querySelector('.todo-list');
+  const checkboxes = [];
+
+  addButton.addEventListener('click', () => {
+    const taskText = newTaskInput.value.trim();
+    if (taskText !== '') {
+      createTask(taskText);
+      newTaskInput.value = '';
+    }
+  });
+
+  function createTask(text) {
+    const taskDiv = document.createElement('div');
+    taskDiv.classList.add('todo-item');
+
+    const taskSpan = document.createElement('span');
+    taskSpan.classList.add('task');
+    taskSpan.textContent = text;
+
+    const editButton = document.createElement('button');
+    editButton.classList.add('edit');
+    editButton.textContent = 'Edit';
+
+    const actionsDiv = document.createElement('div');
+    actionsDiv.classList.add('actions');
+
+    const doneButton = document.createElement('button');
+    doneButton.classList.add('done');
+    doneButton.textContent = 'Done';
+
+    actionsDiv.appendChild(editButton);
+    actionsDiv.appendChild(doneButton);
+    taskDiv.appendChild(taskSpan);
+    taskDiv.appendChild(actionsDiv);
+
+    todoList.appendChild(taskDiv);
+
+    editButton.addEventListener('click', () => {
+      const newText = prompt('Edit task:', text);
+      if (newText !== null) {
+        taskSpan.textContent = newText;
+      }
+    });
+
+    doneButton.addEventListener('click', () => {
+      taskSpan.classList.toggle('completed');
+    });
+  }
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+
+  themeToggle.addEventListener('click', () => {
+    if (themeToggle.checked) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+  });
+</script>
+</body>
+</html>
